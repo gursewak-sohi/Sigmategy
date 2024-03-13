@@ -1,0 +1,85 @@
+// Common SCSS
+
+body {
+    background-color: $neutral-100;
+}
+
+main {
+    position: relative;
+    overflow: hidden;
+    z-index: 10;
+}
+
+.hide-scroll {
+    overflow: hidden;
+    height: 100vh;
+}
+
+.font-normal {
+    font-weight: 400;
+}
+
+.font-medium {
+    font-weight: 500;
+}
+
+.font-bold {
+    font-weight: 700;
+}
+
+.font-extrabold {
+    font-weight: 800;
+}
+
+.text-primary {
+    color: $primary;
+}
+
+.text-secondary {
+    color: $secondary;
+}
+
+.text-neutral-500 {
+    color: $neutral-500;
+}
+
+.bg-primary {
+    background-color: $primary;
+}
+
+.bg-secondary {
+    background-color: $secondary;
+}
+.bg-orange {
+    background-color: $orange;
+}
+.bg-black {
+    background-color: $black;
+}
+
+.reveal-image {
+    position: relative;
+    --scaleX: 1;
+    --scaleFull: 1.2;
+    overflow: hidden;
+    &:before {
+        background-color: $white;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        content: '';
+        transform: scaleX(var(--scaleX));
+        transform-origin: left;
+        transition: 0.5s all ease-out;
+        z-index: 10;
+    }
+    & img {
+        transition: 0.5s all ease-out;
+        transform: scale(var(--scaleFull));
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}

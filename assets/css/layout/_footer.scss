@@ -1,0 +1,138 @@
+// Footer SCSS
+.footer-section {
+    padding-top: 62px;
+    & .lines {
+        display: grid;
+        align-items: center;
+        height: 32px;
+        width: 100%;
+        grid-template-columns: 22fr 20fr 27fr 16fr 15fr;
+        & span {
+            height: 100%;
+        }
+    }
+    & .block {
+        & .top {
+            padding: 50px 0 70px;
+            display: grid;
+            grid-template-columns: 256px 1fr 275px;
+            gap: 90px;
+            @include laptop {
+                grid-template-columns: 216px 1fr 245px;
+                gap: 30px;
+            }
+            @include tablet {
+                grid-template-columns: 1fr;
+            }
+            & .left {
+                display: flex;
+                flex-direction: column;
+                gap: 46px;
+            }
+            & .middle {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                column-gap: 90px;
+                row-gap: 38px;
+                @include laptop {
+                    gap: 30px;
+                }
+                @include mobile {
+                    grid-template-columns: 1fr;
+                }
+            }
+            & .right {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            & h5 {
+                font-weight: 700;
+                font-size: 18px;
+                line-height: 32px;
+                letter-spacing: 0.02em;
+                margin-bottom: 16px;
+            }
+            & .menu {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                & li {
+                    display: flex;
+                    & a {
+                        color: $neutral-500;
+                        font-size: 16px;
+                        line-height: 22.4px;
+                        font-weight: 400;
+                        text-decoration: none;
+                    }
+                }
+            }
+            & .address {
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+                & li {
+                    display: flex;
+                    & a {
+                        display: flex;
+                        gap: 16px;
+                        align-items: flex-start;
+                        font-size: 16px;
+                        line-height: 22.4px;
+                        font-weight: 400;
+                        text-decoration: none;
+                        color: $neutral-700;
+                    }
+                }
+            }
+            & .social {
+                display: flex;
+                align-items: center;
+                gap: 16px;
+                margin-top: 34px;
+                margin-bottom: 20px;
+            }
+        }
+        & .bottom {
+            border-top: 1px solid $neutral-200;
+            padding: 32px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            @include mobile {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+            & p {
+                font-style: normal;
+                font-weight: 400;
+                font-size: 14px;
+                letter-spacing: 0.02em;
+                color: $neutral-500;
+            }
+            & ul {
+                display: flex;
+                gap: 18px;
+                @include mobile {
+                    flex-direction: column;
+                    align-items: center;
+                }
+                & li {
+                    display: flex;
+                    & a {
+                        font-weight: 400;
+                        font-size: 14px;
+                        line-height: 100%;
+                        letter-spacing: 0.02em;
+                        color: $neutral-500;
+                        text-decoration: none;
+                    }
+                }
+                
+            }
+        }
+    }
+
+}

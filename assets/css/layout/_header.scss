@@ -1,0 +1,211 @@
+// Header SCSS
+
+.header-section {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 80;
+    padding: 20px 0;
+   
+    & .block {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+        &:after {
+            background-color: $white;
+            width: 67px;
+            height: 67px;
+            border-radius: 100%;
+            position: absolute;
+            right: -13px;
+            top: -17px;
+            content: '';
+            opacity: 0;
+            transform: scale(1);
+            transition: 0.8s transform ease-in-out, 0.4s opacity ease-in-out;
+            z-index: -10;
+        }
+        & .logo {
+            transition: 0.6s all ease;
+            position: relative;
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: $black;
+        }
+        & .right {
+            display: flex;
+            align-items: center;
+            gap: 42px;
+            @include laptop {
+                gap: 20px;
+            }
+        }
+        & .toggler {
+            padding: 0;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 10;
+            position: relative;
+            outline: none;
+            width: 23px;
+            height: 23px;
+            transition: 0.6s all ease;
+            display: none;
+            @include laptop {
+                display: block;
+            }
+            & span {
+                border-radius: 4px;
+                width: 23px;
+                height: 3px;
+                display: block;
+                background-color: $black;
+                position: relative;
+                transition: all 0.1s;
+                &::after,
+                &::before {
+                    border-radius: 4px;
+                    transition: all 0.3s;
+                    position: absolute;
+                    left: 0;
+                    content: "";
+                    height: 3px;
+                    background-color: $black;
+                }
+                &::before {
+                    width: 23px;
+                    top: 6px;
+                }
+                &::after {
+                    width: 23px;
+                    bottom: 6px;
+                }
+            }
+        }
+        & .menu-wrapper {
+            display: flex;
+            align-items: center;
+            @include laptop {
+                flex-direction: column;
+                position: absolute;
+                top: -32px;
+                left: 0;
+                right: 0;
+                padding: 161px 0 40px;
+                visibility: hidden;
+                opacity: 0;
+                transform: translateX(50%);
+                transform-origin: right;
+                transition: 1s all cubic-bezier(.08, 1.0, .07, 1) 0.2s;
+                height: 100vh;
+                height: calc(var(--vh, 1vh) * 100);
+                justify-content: flex-end;
+                overflow: hidden;
+            }
+            & .header-wrapper {
+                display: flex;
+                align-items: center;
+                column-gap: 42px;
+                @include laptop {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    padding: 0;
+                    overflow: auto;
+                    height: 100%;
+                }
+                & > ul {
+                    display: flex;
+                    align-items: center;
+                    column-gap: 32px;
+                    @include laptop {
+                        height: auto;
+                        counter-reset: section;
+                        list-style-type: none;
+                        flex-direction: column;
+                        margin-right: 0;
+                        width: 100%;
+                        row-gap: 24px;
+                    }
+                    @include tablet {
+                        gap: 16px;
+                    }
+                    & > li {
+                        display: flex;
+                        align-items: center;
+                        height: 100%;
+                        @include laptop {
+                            width: 100%;
+                            position: relative;
+                        }
+                        & > a {
+                            font-weight: 500;
+                            font-size: 16px;
+                            line-height: 24px;
+                            text-decoration: none;
+                            font-family: $font-Barlow;
+                            color: $neutral-500;
+                            display: flex;
+                            align-items: center;
+                            gap: 6px;
+                            @include laptop {
+                                height: 100%;
+                                justify-content: flex-start;
+                            }
+                            @include tablet {
+                                font-size: 20px;
+                                line-height: 28px;
+                                width: 100%;
+                                justify-content: space-between;
+                                background-color: $neutral-100;
+                                padding: 16px;
+                                border-radius: 10px;
+                            }
+                        }
+                    }
+
+                }
+            }
+
+        }
+        &.active {
+            &:after {
+                opacity: 1;
+                transform: scale(50);
+            }
+            & .logo {
+                color: $white;
+            }
+            & .toggler {
+                & span {
+                    background-color: transparent;
+                    &::before {
+                        background-color: $black;
+                        width: 23px;
+                        transform: translateY(-6px) translateX(-2px) rotate(-45deg);
+                    }
+                    &::after {
+                        background-color: $black;
+                        width: 23px;
+                        transform: translateY(6px) translateX(-2px) rotate(45deg);
+                    }
+                }
+            }
+            & .menu-wrapper {
+                @include laptop {
+                    transition: 1s all cubic-bezier(.08, 1.0, .07, 1) 0.4s;
+                    visibility: visible;
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            }
+        }
+    }
+}

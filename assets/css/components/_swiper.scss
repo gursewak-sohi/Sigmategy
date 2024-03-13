@@ -1,0 +1,39 @@
+// Swiper CSS {
+.swiper-pagination {
+    bottom: 0px;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    & .swiper-pagination-bullet {
+        width: 12px;
+        height: 12px;
+        background-color: $neutral-200;
+        border-radius: 12px;
+        transition: $link-transition;
+        &.swiper-pagination-bullet-active {
+            background-color: $orange;
+        }
+    }
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+    width: 66px;
+    height: 66px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $orange;
+    &.swiper-button-disabled {
+        opacity: 1;
+        color: $neutral-300;
+        pointer-events: none;
+    }
+}
+
+.swiper-button-hidden {
+    display: none !important;
+}
