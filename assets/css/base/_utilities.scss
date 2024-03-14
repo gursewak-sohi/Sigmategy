@@ -99,5 +99,13 @@
     transition: opacity .5s cubic-bezier(.42, 0, .002, 1), transform .65s cubic-bezier(.42, 0, .002, 1);
 }
 
+.animate-right {
+    transform: translatex(-100%);
+    opacity: 0;
+    transition: opacity .5s cubic-bezier(.42, 0, .002, 1), transform .65s cubic-bezier(.42, 0, .002, 1);
+}
+
+
+
 
  

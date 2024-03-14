@@ -225,18 +225,37 @@
                         duration: 1,
                         text: nextWord,
                         ease: "none",
+                        // onComplete: () => {
+                        //     // Wait a bit before starting the next word for readability
+                        //     gsap.delayedCall(0.5, typeAndSwitch);
+                        // }
                         onComplete: () => {
-                            // Wait a bit before starting the next word for readability
-                            gsap.delayedCall(0.5, typeAndSwitch);
+                            // Check if we should continue or stop
+                            if (wordIndex < words.length) {
+                                // Wait a bit before starting the next word for readability
+                                gsap.delayedCall(0.5, typeAndSwitch);
+                            }
+                            else {
+                                dynamicWord.classList.add('fade-out-cursor');
+                            }
                         }
                     });
                 }
             }
     
+            // function typeAndSwitch() {
+            //     let nextWord = words[wordIndex % words.length];
+            //     wordIndex++;
+            //     deleteAndType(nextWord);
+            // }
+
             function typeAndSwitch() {
-                let nextWord = words[wordIndex % words.length];
-                wordIndex++;
-                deleteAndType(nextWord);
+                // Check if all words have been displayed
+                if (wordIndex < words.length) {
+                    let nextWord = words[wordIndex % words.length];
+                    wordIndex++;
+                    deleteAndType(nextWord);
+                }
             }
 
             typeAndSwitch(); 
@@ -259,21 +278,7 @@
         });
     }
 
-    // Line width code goes here
-    const lineX = document.querySelectorAll('.line-x');
-    if (lineX) {
-        ScrollTrigger.batch(lineX, {
-            onEnter: elements => {
-                gsap.to(elements, {
-                    "--scaleX": 1,
-                    stagger: 0.4,
-                    ease: 'none',
-                    delay: 0.5
-                });
-            },
-            once: false
-        });
-    }
+    
 
     startGsapAnimation();
 
@@ -310,6 +315,22 @@
             });
         }
 
+         // Animation Slide Right
+         const animateRight = document.querySelectorAll('.animate-right');
+         if (animateRight) {
+             // gsap.set(animationUp, { y: -100, autoAlpha: 0 });
+             ScrollTrigger.batch(".animate-right", {
+                 onEnter: elements => {
+                     gsap.to(elements, {
+                         autoAlpha: 1,
+                         x: 0,
+                         stagger: 0.12
+                     });
+                 },
+                 once: false
+             });
+         }
+
 
         const animationFadeInOut = document.querySelectorAll('.animate-fadeInOut');
         if (animationFadeInOut) {
@@ -328,6 +349,44 @@
             });
         }
 
+        const bannerDots = document.querySelectorAll('.lines svg path'); // Select all the dots
+        if (bannerDots.length > 0) {
+                // Function to randomly change the color of a dot
+                const animateDotColor = (dot) => {
+                    const targetColor = Math.random() > 0.5 ? '#CDCFD0' : '#2185B2'; // Grey and Blue
+
+                    // Animate the color change
+                    gsap.to(dot, {
+                        fill: targetColor,
+                        duration: 0.5 + Math.random() * 1.5, 
+                        onComplete: () => animateDotColor(dot), 
+                    });
+                };
+            bannerDots.forEach(dot => {
+                animateDotColor(dot);
+            });
+        }
+
+        const servicesDots = document.querySelectorAll('.services-lines svg path'); // Select all the dots
+        if (servicesDots.length > 0) {
+                // Function to randomly change the color of a dot
+                const animateDotColor = (dot) => {
+                    const targetColor = Math.random() > 0.5 ? '#CDCFD0' : '#F68621'; // Grey and Blue
+
+                    // Animate the color change
+                    gsap.to(dot, {
+                        fill: targetColor,
+                        duration: 0.5 + Math.random() * 1.5, 
+                        onComplete: () => animateDotColor(dot), 
+                    });
+                };
+            servicesDots.forEach(dot => {
+                animateDotColor(dot);
+            });
+        }
+       
+       
+
         let banner = document.querySelector(".banner-section");
         if (banner) {
             gsap.set('.banner-section .image .curve', { opacity: 0 });
@@ -343,13 +402,13 @@
             .to(".banner-section .image .person", { scale: 1, opacity: 1, duration: 1, ease: "Expo.easeInOut" }, 0.3)
             .to(".banner-section .image .item-1", { scale: 1.2, opacity: 1, duration: 0.5, ease: "Expo.easeInOut" }, 1)
             .to(".banner-section .image .item-1", { scale: 1, duration: 0.5, ease: "Expo.easeOut" }, ">")
-            .to(".banner-section .image .item-2", { scale: 1.2, opacity: 1, duration: 0.5, ease: "Expo.easeInOut" }, 1)
+            .to(".banner-section .image .item-2", { scale: 1.2, opacity: 1, duration: 0.5, ease: "Expo.easeInOut" }, 1.2)
             .to(".banner-section .image .item-2", { scale: 1, duration: 0.5, ease: "Expo.easeOut" }, ">")
-            .to(".banner-section .image .item-3", { scale: 1.2, opacity: 1, duration: 0.5, ease: "Expo.easeInOut" }, 1)
+            .to(".banner-section .image .item-3", { scale: 1.2, opacity: 1, duration: 0.5, ease: "Expo.easeInOut" }, 1.4)
             .to(".banner-section .image .item-3", { scale: 1, duration: 0.5, ease: "Expo.easeOut" }, ">")
-            .to(".banner-section .image .item-4", { scale: 1.2, opacity: 1, duration: 0.5, ease: "Expo.easeInOut" }, 1)
+            .to(".banner-section .image .item-4", { scale: 1.2, opacity: 1, duration: 0.5, ease: "Expo.easeInOut" }, 1.6)
             .to(".banner-section .image .item-4", { scale: 1, duration: 0.5, ease: "Expo.easeOut" }, ">")
-            .to(".banner-section .image .lines", { x: 0, opacity: 1, duration: 1, ease: "Expo.easeInOut" }, 0.7);
+            .to(".banner-section .image .lines", { x: 0, opacity: 1, duration: 1, ease: "Expo.easeInOut" }, 1);
         }
 
         let industry = document.querySelector(".industry-section");

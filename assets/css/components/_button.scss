@@ -84,3 +84,22 @@
         height: 36px;
     }
  }
+
+ .btn-link {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 110%;
+    color: $neutral-500;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    transition: $btn-transition;
+    &:hover {
+        color: $orange;
+    }
+    & svg {
+        position: relative;
+        top: 1px;
+    }
+ }
