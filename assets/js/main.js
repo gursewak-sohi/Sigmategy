@@ -200,8 +200,8 @@
 
     if (!smWidth) {
         ScrollSmoother.create({
-            smooth: 0.5, // how long (in seconds) it takes to "catch up" to the native scroll position
-            effects: true, // looks for data-speed and data-lag attributes on elements
+            smooth: 0.5, 
+            effects: true, 
         });
     }
 
@@ -214,25 +214,18 @@
                 let currentText = dynamicWord.textContent;
                 if (currentText.length > 0) {
                     gsap.to(dynamicWord, {
-                        duration: 0.5 / currentText.length, // Faster deletion speed
-                        text: currentText.slice(0, -1), // Remove last character
+                        duration: 0.5 / currentText.length,  
+                        text: currentText.slice(0, -1), 
                         ease: "none",
-                        onComplete: () => deleteAndType(nextWord) // Continue deleting
+                        onComplete: () => deleteAndType(nextWord)  
                     });
                 } else {
-                    // Once deletion is complete, start typing the next word
                     gsap.to(dynamicWord, {
                         duration: 1,
                         text: nextWord,
                         ease: "none",
-                        // onComplete: () => {
-                        //     // Wait a bit before starting the next word for readability
-                        //     gsap.delayedCall(0.5, typeAndSwitch);
-                        // }
                         onComplete: () => {
-                            // Check if we should continue or stop
                             if (wordIndex < words.length) {
-                                // Wait a bit before starting the next word for readability
                                 gsap.delayedCall(0.5, typeAndSwitch);
                             }
                             else {
@@ -242,15 +235,9 @@
                     });
                 }
             }
-    
-            // function typeAndSwitch() {
-            //     let nextWord = words[wordIndex % words.length];
-            //     wordIndex++;
-            //     deleteAndType(nextWord);
-            // }
+
 
             function typeAndSwitch() {
-                // Check if all words have been displayed
                 if (wordIndex < words.length) {
                     let nextWord = words[wordIndex % words.length];
                     wordIndex++;
@@ -315,6 +302,29 @@
             });
         }
 
+        // Animation Zoom Out-In
+        const animateZoom = document.querySelectorAll('.animate-zoom');
+        if (animateZoom.length) {
+            ScrollTrigger.batch(".animate-zoom", {
+                onEnter: elements => {
+                    gsap.fromTo(elements, 
+                        {
+                            scale: 1.2,  
+                        }, 
+                        {
+                            scale: 1, 
+                            stagger: 0.12,  
+                            duration: 0.7,  
+                            ease: "Expo.easeOut", 
+                            delay: 0.8 
+                        }
+                    );
+                },
+                once: false 
+            });
+        }
+
+
          // Animation Slide Right
          const animateRight = document.querySelectorAll('.animate-right');
          if (animateRight) {
@@ -324,7 +334,7 @@
                      gsap.to(elements, {
                          autoAlpha: 1,
                          x: 0,
-                         stagger: 0.12
+                         stagger: 0.12,
                      });
                  },
                  once: false
@@ -349,41 +359,32 @@
             });
         }
 
-        const bannerDots = document.querySelectorAll('.lines svg path'); // Select all the dots
-        if (bannerDots.length > 0) {
-                // Function to randomly change the color of a dot
-                const animateDotColor = (dot) => {
-                    const targetColor = Math.random() > 0.5 ? '#CDCFD0' : '#2185B2'; // Grey and Blue
-
-                    // Animate the color change
-                    gsap.to(dot, {
-                        fill: targetColor,
-                        duration: 0.5 + Math.random() * 1.5, 
-                        onComplete: () => animateDotColor(dot), 
-                    });
-                };
-            bannerDots.forEach(dot => {
-                animateDotColor(dot);
+        const dots = document.querySelectorAll('.lines svg path'); // Select all the dots
+        if (dots.length > 0) {
+            // Function to randomly change the color of a dot
+            const animateDotColor = (dot) => {
+                // Array of colors including the new ones
+                const colors = ['#CDCFD0', '#2185B2', '#d94428', '#f68621'];
+                
+                // Randomly select a color from the array
+                const targetColor = colors[Math.floor(Math.random() * colors.length)];
+        
+                // Animate the color change
+                gsap.to(dot, {
+                    fill: targetColor,
+                    duration: 0.5 + Math.random() * 1, 
+                    onComplete: () => animateDotColor(dot), // Recursively call to create a continuous loop
+                });
+            };
+        
+            dots.forEach(dot => {
+                animateDotColor(dot); // Initialize the animation for each dot
             });
         }
 
-        const servicesDots = document.querySelectorAll('.services-lines svg path'); // Select all the dots
-        if (servicesDots.length > 0) {
-                // Function to randomly change the color of a dot
-                const animateDotColor = (dot) => {
-                    const targetColor = Math.random() > 0.5 ? '#CDCFD0' : '#F68621'; // Grey and Blue
-
-                    // Animate the color change
-                    gsap.to(dot, {
-                        fill: targetColor,
-                        duration: 0.5 + Math.random() * 1.5, 
-                        onComplete: () => animateDotColor(dot), 
-                    });
-                };
-            servicesDots.forEach(dot => {
-                animateDotColor(dot);
-            });
-        }
+     
+        
+ 
        
        
 
@@ -398,17 +399,17 @@
             gsap.set('.banner-section .image .lines', { x: 100, opacity: 0 });
             
             let bannerTL = gsap.timeline();
-            bannerTL.to(".banner-section .image .curve", { opacity: 1,  duration: 1, ease: "Expo.easeInOut" }, 0)
-            .to(".banner-section .image .person", { scale: 1, opacity: 1, duration: 1, ease: "Expo.easeInOut" }, 0.3)
-            .to(".banner-section .image .item-1", { scale: 1.2, opacity: 1, duration: 0.5, ease: "Expo.easeInOut" }, 1)
-            .to(".banner-section .image .item-1", { scale: 1, duration: 0.5, ease: "Expo.easeOut" }, ">")
-            .to(".banner-section .image .item-2", { scale: 1.2, opacity: 1, duration: 0.5, ease: "Expo.easeInOut" }, 1.2)
-            .to(".banner-section .image .item-2", { scale: 1, duration: 0.5, ease: "Expo.easeOut" }, ">")
-            .to(".banner-section .image .item-3", { scale: 1.2, opacity: 1, duration: 0.5, ease: "Expo.easeInOut" }, 1.4)
-            .to(".banner-section .image .item-3", { scale: 1, duration: 0.5, ease: "Expo.easeOut" }, ">")
-            .to(".banner-section .image .item-4", { scale: 1.2, opacity: 1, duration: 0.5, ease: "Expo.easeInOut" }, 1.6)
-            .to(".banner-section .image .item-4", { scale: 1, duration: 0.5, ease: "Expo.easeOut" }, ">")
-            .to(".banner-section .image .lines", { x: 0, opacity: 1, duration: 1, ease: "Expo.easeInOut" }, 1);
+            bannerTL.to(".banner-section .image .curve", { opacity: 1,  duration: 1.4, ease: "Expo.easeInOut" }, 0)
+            .to(".banner-section .image .person", { scale: 1, opacity: 1, duration: 1, ease: "Expo.easeInOut" }, 0.4)
+            .to(".banner-section .image .item-1", { scale: 1.2, opacity: 1, duration: 0.7, ease: "Expo.easeInOut" }, 1.3)
+            .to(".banner-section .image .item-1", { scale: 1, duration: 0.7, ease: "Expo.easeOut" }, ">")
+            .to(".banner-section .image .item-2", { scale: 1.2, opacity: 1, duration: 0.7, ease: "Expo.easeInOut" }, 1.6)
+            .to(".banner-section .image .item-2", { scale: 1, duration: 0.7, ease: "Expo.easeOut" }, ">")
+            .to(".banner-section .image .item-3", { scale: 1.2, opacity: 1, duration: 0.7, ease: "Expo.easeInOut" }, 1.8)
+            .to(".banner-section .image .item-3", { scale: 1, duration: 0.7, ease: "Expo.easeOut" }, ">")
+            .to(".banner-section .image .item-4", { scale: 1.2, opacity: 1, duration: 0.7, ease: "Expo.easeInOut" }, 2)
+            .to(".banner-section .image .item-4", { scale: 1, duration: 0.7, ease: "Expo.easeOut" }, ">")
+            .to(".banner-section .image .lines", { x: 0, opacity: 1, duration: 3, ease: "Expo.easeInOut" }, 0.5);
         }
 
         let industry = document.querySelector(".industry-section");
@@ -430,13 +431,13 @@
             });
 
             
-            industryTL.to(".industry-section .image .curve", { opacity: 1,  duration: 1, ease: "Expo.easeInOut" }, 0)
+            industryTL.to(".industry-section .image .curve", { opacity: 1,  duration: 1.4, ease: "Expo.easeInOut" }, 0)
             .to(".industry-section .image .person", { scale: 1, opacity: 1, duration: 1, ease: "Expo.easeInOut" }, 0.3)
-            .to(".industry-section .image .item-plus", { scale: 1.2, opacity: 1, duration: 0.5, ease: "Expo.easeInOut" }, 1)
+            .to(".industry-section .image .item-plus", { scale: 1.4, opacity: 1, duration: 0.7, ease: "Expo.easeInOut" }, 1)
             .to(".industry-section .image .item-plus", { scale: 1, duration: 0.5, ease: "Expo.easeOut" }, ">")
-            .to(".industry-section .image .item-heart", { scale: 1.2, opacity: 1, duration: 0.5, ease: "Expo.easeInOut" }, 1)
-            .to(".industry-section .image .item-heart", { scale: 1, duration: 0.5, ease: "Expo.easeOut" }, ">")
-            .to(".industry-section .image .lines", { x: 0, opacity: 1, duration: 1, ease: "Expo.easeInOut" }, 0.7);
+            .to(".industry-section .image .item-heart", { scale: 1.4, opacity: 1, duration: 0.7, ease: "Expo.easeInOut" }, 1)
+            .to(".industry-section .image .item-heart", { scale: 1, duration: 0.7, ease: "Expo.easeOut" }, ">")
+            .to(".industry-section .image .lines", { x: 0, opacity: 1, duration: 3, ease: "Expo.easeInOut" }, 1);
         }
 
 
@@ -463,64 +464,44 @@
 
     }
 
-    // GSAP Counter Animation Function
     const gapAnimateCount = (count) => {
         var zero = { val: 0 },
-            num = count.getAttribute('data-number'),
+            num = parseFloat(count.getAttribute('data-number')),
             split = (num + "").split("."),
             decimals = split.length > 1 ? split[1].length : 0;
     
-        gsap.to(zero, {
+      
+        let tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: count,
+                start: "top bottom",  
+                end: "bottom top",
+                toggleActions: "restart pause resume pause",
+                onEnter: () => { tl.restart(); },
+                onLeaveBack: () => { tl.restart(); },
+                markers: false,  
+            },
+            defaults: { duration: 6, ease: "Power4.out" },  
+        });
+    
+        tl.to(zero, {
             val: num,
-            duration: 2,
-            scrollTrigger: count,
-            ease: "Power4.out",
             onUpdate: function() {
-                let updatedCount = zero.val.toFixed(decimals)
+                let updatedCount = zero.val.toFixed(decimals);
                 count.innerHTML = updatedCount;
             }
         });
     }
-  
-    // counter animation
+    
+    // Counter animation
     let counts = document.querySelectorAll(".counts");
-    if (counts) {
-        counts.forEach(count => {
-            gapAnimateCount(count);
-        });
-    }
+    counts.forEach(count => {
+        gapAnimateCount(count);
+    });
+    
 
      
-
-    // Glue Button Animation
-    const glueBtns = document.querySelectorAll('.btn-glue');
-    if (glueBtns.length) {
-        glueBtns.forEach(button => {
-            button.addEventListener('mousemove', (e) => {
-                const rect = button.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                const dx = x - rect.width / 2;
-                const dy = y - rect.height / 2;
-
-                gsap.to(button, {
-                    duration: 0.2,
-                    x: dx * 0.05,
-                    y: dy * 0.1,
-                    ease: "ease.out"
-                });
-            });
-
-            button.addEventListener('mouseleave', () => {
-                gsap.to(button, {
-                    duration: 0.4,
-                    x: 0,
-                    y: 0,
-                    ease: "ease.inOut"
-                });
-            });
-        });
-    }
+ 
 
   
 

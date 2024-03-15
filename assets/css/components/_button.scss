@@ -3,7 +3,8 @@
     cursor: pointer;
     font-family: $font-Barlow;
     border: none;
-    transition: $btn-transition;
+    // transition: $btn-transition;
+    transition: 0.3s all ease-in-out;
     display: inline-flex;
     align-items: center;
     white-space: nowrap;
@@ -52,9 +53,9 @@
     border: 1px solid $white;
     background-color: $white;
     &:hover {
-        background-color: $white;
-        color: $primary;
-        border-color: $white;
+        background-color: $orange;
+        color: $white;
+        border-color: $orange;
     }
 }
 
@@ -63,9 +64,9 @@
     border: 1px solid $white;
     background-color: $white;
     &:hover {
-        background-color: $white;
-        color: $secondary;
-        border-color: $white;
+        background-color: $primary;
+        color: $white;
+        border-color: $primary;
     }
 }
  
