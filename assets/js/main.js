@@ -382,12 +382,6 @@
             });
         }
 
-     
-        
- 
-       
-       
-
         let banner = document.querySelector(".banner-section");
         if (banner) {
             gsap.set('.banner-section .image .curve', { opacity: 0 });
@@ -442,10 +436,7 @@
 
 
         const moveRandomly = (element) => {
-            
             const generateMovement = () => Math.random() * 30 - 15; 
-        
-           
             const newX = "+=" + generateMovement();
             const newY = "+=" + generateMovement();
         
@@ -457,12 +448,31 @@
                 onComplete: () => moveRandomly(element) 
             });
         };
-        
-        document.querySelectorAll('.moving-item').forEach(item => {
-            moveRandomly(item); // Initialize animation for each item
-        });
+            
+            document.querySelectorAll('.moving-item').forEach(item => {
+                moveRandomly(item);  
+            });
+        }
 
-    }
+        const moveRandomlySlow = (element) => {
+            // Decrease the maximum distance of movement to reduce the area
+            const generateMovement = () => Math.random() * 20 - 10; // Reduced from 30 - 15 to 20 - 10
+            const newX = "+=" + generateMovement();
+            const newY = "+=" + generateMovement();
+        
+            // Increase the duration to slow down the movement
+            gsap.to(element, {
+                x: newX,
+                y: newY,
+                duration: 2, // Increased from 1 to 2 seconds
+                ease: "none",
+                onComplete: () => moveRandomlySlow(element) 
+            });
+        };
+        
+        document.querySelectorAll('.moving-item-slow').forEach(item => {
+            moveRandomlySlow(item);  
+        });
 
     const gapAnimateCount = (count) => {
         var zero = { val: 0 },
