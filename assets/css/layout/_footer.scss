@@ -1,10 +1,9 @@
 // Footer SCSS
 .footer-section {
-    padding-top: 62px;
     & .lines {
         display: grid;
         align-items: center;
-        height: 32px;
+        height: 20px;
         width: 100%;
         grid-template-columns: 22fr 20fr 27fr 16fr 15fr;
         & span {
@@ -52,6 +51,11 @@
                 line-height: 32px;
                 letter-spacing: 0.02em;
                 margin-bottom: 16px;
+                color: $primary;
+                @include tablet {
+                    font-size: 16px;
+                    margin-bottom: 10px;
+                }
             }
             & .menu {
                 display: flex;
@@ -61,10 +65,13 @@
                     display: flex;
                     & a {
                         color: $neutral-500;
-                        font-size: 16px;
+                        font-size: 18px;
                         line-height: 22.4px;
-                        font-weight: 400;
+                        font-weight: 500;
                         text-decoration: none;
+                        @include tablet {
+                            font-size: 16px;
+                        }
                     }
                 }
             }
@@ -72,62 +79,81 @@
                 display: flex;
                 flex-direction: column;
                 gap: 16px;
+                margin-bottom: 40px;
                 & li {
                     display: flex;
                     & a {
                         display: flex;
                         gap: 16px;
                         align-items: flex-start;
-                        font-size: 16px;
+                        font-size: 18px;
                         line-height: 22.4px;
-                        font-weight: 400;
+                        font-weight: 500;
                         text-decoration: none;
-                        color: $neutral-700;
+                        color: $primary;
+                        @include tablet {
+                            font-size: 16px;
+                        }
                     }
                 }
             }
-            & .social {
-                display: flex;
-                align-items: center;
-                gap: 16px;
-                margin-top: 34px;
-                margin-bottom: 20px;
-            }
+            
         }
         & .bottom {
             border-top: 1px solid $neutral-200;
             padding: 32px 0;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            @include mobile {
+            gap: 10px;
+            @include tablet {
                 flex-direction: column;
                 text-align: center;
                 gap: 20px;
             }
             & p {
                 font-style: normal;
-                font-weight: 400;
-                font-size: 14px;
+                font-weight: 500;
+                font-size: 16px;
                 letter-spacing: 0.02em;
                 color: $neutral-500;
+                @include tablet {
+                    font-size: 14px;
+                }
             }
-            & ul {
+            & .social {
+                display: flex;
+                align-items: center;
+                gap: 16px;
+                margin-right: 60px;
+                flex-shrink: 0;
+                @include laptop {
+                    margin-right: 30px;
+                }
+                @include tablet {
+                    margin-right: 0;
+                }
+            }
+            & .pages {
                 display: flex;
                 gap: 18px;
-                @include mobile {
+                margin-left: auto;
+                @include tablet {
                     flex-direction: column;
                     align-items: center;
+                    margin-left: 0;
                 }
                 & li {
                     display: flex;
                     & a {
-                        font-weight: 400;
-                        font-size: 14px;
+                        font-weight: 500;
+                        font-size: 16px;
                         line-height: 100%;
                         letter-spacing: 0.02em;
                         color: $neutral-500;
                         text-decoration: none;
+                        @include tablet {
+                            font-size: 14px;
+                        }
                     }
                 }
                 

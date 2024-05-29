@@ -6,27 +6,50 @@
     & label {
         display: inline-flex;
         cursor: pointer;
-        font-size: 13px;
-        line-height: 24px;
+        font-size: 24px;
+        line-height: 140%;
         text-align: left;
+        color: $neutral-700;
+        align-items: center;
+        font-weight:  500;
+        @include laptop {
+            font-size: 20px;
+        }
+        @include tablet {
+            font-size: 18px;
+        }
         & span {
             border-radius: 50%;
-            width: 16px;
-            height: 16px;
+            width: 22px;
+            height: 22px;
             display: flex;
             flex-shrink: 0;
             align-items: center;
             justify-content: center;
-            margin-right: 13px;
-            margin-top: 4px;
+            margin-right: 21px;
+            border: 1.5px solid $neutral-700;
             position: relative;
-            background-color: $white;
+            border-radius: 4px;
+            top: 1px;
+            @include tablet {
+                width: 18px;
+                height: 18px;
+                margin-right: 16px;
+            }
             & svg {
                 transform: scale(0);
             }
         }
     }
-    & input:checked+label svg {
-        transform: scale(1);
+    & input:checked+label {
+        color: $secondary;
+        font-weight:  600;
+        & span {
+            border-color: $secondary;
+            & svg {
+                transform: scale(1);
+            }
+        }
     }
+    
 }

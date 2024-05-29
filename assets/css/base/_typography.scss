@@ -3,11 +3,14 @@ body {
     font-family: $font-Barlow;
     font-weight: 400;
     overflow-x: hidden;
-    color: $black;
-    font-size: 24px;
+    color: $neutral-900;
+    font-size: 23px;
     line-height: 140%;
-    @include tablet {
+    @include laptop {
         font-size: 20px;
+    }
+    @include tablet {
+        font-size: 18px;
     }
 }
 
@@ -17,33 +20,97 @@ b {
 
 h1,
 .h1 {
-    font-size: 64px;
-    line-height: 120%;
+    font-size: 53px;
+    line-height: 142%;
     font-family: $font-Barlow;
     letter-spacing: 0.02em;
-    @include laptop {
-        font-size: 56px;
+    @include desktop {
+        font-size: 45px;
     }
     @include tablet {
-        font-size: 40px;
+        font-size: 35px;
     }
 }
 
 h2,
 .h2 {
-    font-size: 40px;
-    line-height: 110%;
+    font-size: 49px;
+    line-height: 142%;
     font-family: $font-Barlow;
     letter-spacing: 0.02em;
+    @include laptop {
+        font-size: 42px;
+    }
+    @include tablet {
+        font-size: 30px;
+    }
+}
+
+h3,
+.h3 {
+    font-size: 45px;
+    line-height: 142%;
+    font-family: $font-Barlow;
+    letter-spacing: 0.02em;
+    @include laptop {
+        font-size: 38px;
+    }
+    @include tablet {
+        font-size: 26px;
+    }
+}
+
+h4,
+.h4 {
+    font-size: 42px;
+    line-height: 133%;
+    font-family: $font-Barlow;
+    letter-spacing: 0.02em;
+    @include laptop {
+        font-size: 30px;
+    }
+    @include tablet {
+        font-size: 24px;
+    }
+    @include tablet {
+        font-size: 22px;
+    }
+}
+
+h5,
+.h5 {
+    font-size: 26px;
+    line-height: 123%;
+    font-family: $font-Barlow;
+    letter-spacing: 0.02em;
+    @include laptop {
+        font-size: 22px;
+    }
+    @include tablet {
+        font-size: 20px;
+    }
 }
  
 
 p, .p {
-    font-size: 24px;
+    font-size: 23px;
     line-height: 140%;
     font-family: $font-Barlow;
-    font-weight: 400;
+    font-weight: 500;
+    @include laptop {
+        font-size: 20px;
+    }
     @include tablet {
+        font-size: 18px;
+    }
+}
+
+.p-sm {
+    font-size: 20px;
+    line-height: 27px;
+    font-family: $font-Barlow;
+    font-weight: 500;
+    @include laptop {
         font-size: 20px;
     }
 }

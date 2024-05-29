@@ -14,19 +14,26 @@
         border-radius: 12px;
         transition: $link-transition;
         &.swiper-pagination-bullet-active {
-            background-color: $orange;
+            background-color: $secondary;
         }
     }
 }
 
 .swiper-button-prev,
 .swiper-button-next {
-    width: 66px;
-    height: 66px;
+    width: 53px;
+    height: 53px;
+    background-color: $white;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: $orange;
+    color: $secondary;
+    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.23);
+    &:hover {
+        background-color: $secondary;
+        color: $white;
+    }
     &.swiper-button-disabled {
         opacity: 1;
         color: $neutral-300;

@@ -113,26 +113,13 @@
             breakpoints: {
                 768: {
                     slidesPerView: 2,
-                    spaceBetween: 48,
+                    spaceBetween: 38,
                 }
             },
         });
     });
 
-
-    // Case  Swiper
-    const caseSwiper = document.querySelectorAll('[data-swiper="caseSwiper"]');
-    caseSwiper.forEach((swiperElement) => {
-        const swiper = new Swiper(swiperElement.querySelector('.swiper'), {
-            slidesPerView: 1,
-            spaceBetween: 48,
-            grabCursor: true,
-            navigation: {
-                nextEl: swiperElement.querySelector('.swiper-button-next'),
-                prevEl: swiperElement.querySelector('.swiper-button-prev'),
-            },
-        });
-    });
+ 
 
   
 
@@ -195,58 +182,17 @@
   
 
     // gsap animations
-    gsap.registerPlugin(ScrollTrigger, ScrollSmoother, TextPlugin);
+    gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
  
 
-    if (!smWidth) {
-        ScrollSmoother.create({
-            smooth: 0.5, 
-            effects: true, 
-        });
-    }
+    // if (!smWidth) {
+    //     ScrollSmoother.create({
+    //         smooth: 0.5, 
+    //         effects: false, 
+    //     });
+    // }
 
-        const dynamicWord = document.querySelector('[data-text]');
-        if (dynamicWord) {
-            const words = ["results", "solutions", "success"];  
-            let wordIndex = 0;
-            
-            function deleteAndType(nextWord) {
-                let currentText = dynamicWord.textContent;
-                if (currentText.length > 0) {
-                    gsap.to(dynamicWord, {
-                        duration: 0.5 / currentText.length,  
-                        text: currentText.slice(0, -1), 
-                        ease: "none",
-                        onComplete: () => deleteAndType(nextWord)  
-                    });
-                } else {
-                    gsap.to(dynamicWord, {
-                        duration: 1,
-                        text: nextWord,
-                        ease: "none",
-                        onComplete: () => {
-                            if (wordIndex < words.length) {
-                                gsap.delayedCall(0.5, typeAndSwitch);
-                            }
-                            else {
-                                dynamicWord.classList.add('fade-out-cursor');
-                            }
-                        }
-                    });
-                }
-            }
-
-
-            function typeAndSwitch() {
-                if (wordIndex < words.length) {
-                    let nextWord = words[wordIndex % words.length];
-                    wordIndex++;
-                    deleteAndType(nextWord);
-                }
-            }
-
-            typeAndSwitch(); 
-        }
+     
         
 
     // Scroll To function
@@ -273,7 +219,6 @@
         // Animation Slide up
         const animationUp = document.querySelectorAll('.animate-up');
         if (animationUp) {
-            // gsap.set(animationUp, { y: -100, autoAlpha: 0 });
             ScrollTrigger.batch(".animate-up", {
                 onEnter: elements => {
                     gsap.to(elements, {
@@ -285,6 +230,28 @@
                 once: false
             });
         }
+
+        // SVG underline animation
+        const animateUnderline = document.querySelectorAll('.text-underline svg path');
+        animateUnderline.forEach(path => {
+            const length = path.getTotalLength();
+            path.style.strokeDasharray = length;
+            path.style.strokeDashoffset = length;
+
+            ScrollTrigger.create({
+                trigger: path.closest('.text-underline'),
+                start: "top 80%",
+                end: "bottom 20%",
+                onEnter: () => {
+                    gsap.to(path, {
+                        strokeDashoffset: 0,
+                        duration: 2,
+                        ease: "power1.out"
+                    });
+                },
+                once: false
+            });
+        });
 
         // Animation Slide Down
         const animateDown = document.querySelectorAll('.animate-down');
@@ -406,34 +373,6 @@
             .to(".banner-section .image .lines", { x: 0, opacity: 1, duration: 3, ease: "Expo.easeInOut" }, 0.5);
         }
 
-        let industry = document.querySelector(".industry-section");
-        if (industry) {
-            gsap.set('.industry-section .image .curve', { opacity: 0 });
-            gsap.set('.industry-section .image .person', {transformOrigin: "50% 100%",opacity: 0,  scale: 0.9 });
-            gsap.set('.industry-section .image .item-plus', { scale: 0.8, opacity: 0 });
-            gsap.set('.industry-section .image .item-heart', { scale: 0.8, opacity: 0 });
-            gsap.set('.industry-section .image .lines', { x: 100, opacity: 0 });
-            
-            let industryTL = gsap.timeline({
-                scrollTrigger: {
-                    trigger: ".industry-section",
-                    start: "top center", // Adjust this value based on when you want the animation to start
-                    end: "bottom top",
-                    toggleActions: "play none none none", // This means the animation will play when the trigger is passed, and do nothing on scroll back
-                    once: true, // Optional: Set to true if the animation should only occur once
-                }
-            });
-
-            
-            industryTL.to(".industry-section .image .curve", { opacity: 1,  duration: 1.4, ease: "Expo.easeInOut" }, 0)
-            .to(".industry-section .image .person", { scale: 1, opacity: 1, duration: 1, ease: "Expo.easeInOut" }, 0.3)
-            .to(".industry-section .image .item-plus", { scale: 1.4, opacity: 1, duration: 0.7, ease: "Expo.easeInOut" }, 1)
-            .to(".industry-section .image .item-plus", { scale: 1, duration: 0.5, ease: "Expo.easeOut" }, ">")
-            .to(".industry-section .image .item-heart", { scale: 1.4, opacity: 1, duration: 0.7, ease: "Expo.easeInOut" }, 1)
-            .to(".industry-section .image .item-heart", { scale: 1, duration: 0.7, ease: "Expo.easeOut" }, ">")
-            .to(".industry-section .image .lines", { x: 0, opacity: 1, duration: 3, ease: "Expo.easeInOut" }, 1);
-        }
-
 
         const moveRandomly = (element) => {
             const generateMovement = () => Math.random() * 30 - 15; 
@@ -449,10 +388,9 @@
             });
         };
             
-            document.querySelectorAll('.moving-item').forEach(item => {
-                moveRandomly(item);  
-            });
-        }
+        document.querySelectorAll('.moving-item').forEach(item => {
+            moveRandomly(item);  
+        });
 
         const moveRandomlySlow = (element) => {
             // Decrease the maximum distance of movement to reduce the area
@@ -474,39 +412,100 @@
             moveRandomlySlow(item);  
         });
 
-    const gapAnimateCount = (count) => {
-        var zero = { val: 0 },
-            num = parseFloat(count.getAttribute('data-number')),
-            split = (num + "").split("."),
-            decimals = split.length > 1 ? split[1].length : 0;
+        const gapAnimateCount = (count) => {
+            var zero = { val: 0 },
+                num = parseFloat(count.getAttribute('data-number')),
+                split = (num + "").split("."),
+                decimals = split.length > 1 ? split[1].length : 0;
+        
+        
+            let tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: count,
+                    start: "top bottom",  
+                    end: "bottom top",
+                    toggleActions: "restart pause resume pause",
+                    onEnter: () => { tl.restart(); },
+                    onLeaveBack: () => { tl.restart(); },
+                    markers: false,  
+                },
+                defaults: { duration: 6, ease: "Power4.out" },  
+            });
+        
+            tl.to(zero, {
+                val: num,
+                onUpdate: function() {
+                    let updatedCount = zero.val.toFixed(decimals);
+                    count.innerHTML = updatedCount;
+                }
+            });
+        }
     
-      
-        let tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: count,
-                start: "top bottom",  
-                end: "bottom top",
-                toggleActions: "restart pause resume pause",
-                onEnter: () => { tl.restart(); },
-                onLeaveBack: () => { tl.restart(); },
-                markers: false,  
-            },
-            defaults: { duration: 6, ease: "Power4.out" },  
+        // Counter animation
+        let counts = document.querySelectorAll(".counts");
+        counts.forEach(count => {
+            gapAnimateCount(count);
         });
-    
-        tl.to(zero, {
-            val: num,
-            onUpdate: function() {
-                let updatedCount = zero.val.toFixed(decimals);
-                count.innerHTML = updatedCount;
-            }
-        });
+
+
+         // Get the path element
+         const path = document.querySelector(".line svg path");
+
+         // Set the initial state of the path for the drawing effect
+         gsap.set(path, {
+            //  strokeDasharray: path.getTotalLength(),
+             strokeDashoffset: path.getTotalLength()
+         });
+ 
+         // Create the animation
+         gsap.to(path, {
+             strokeDashoffset: 0,
+             duration: 3,
+             ease: "none",
+             scrollTrigger: {
+                 trigger: ".line",
+                 start: "top 80%",
+                 end: "bottom 20%",
+                 scrub: true
+             }
+         });
+
+
     }
-    
-    // Counter animation
-    let counts = document.querySelectorAll(".counts");
-    counts.forEach(count => {
-        gapAnimateCount(count);
+
+
+    // Button bubble effect
+    document.querySelectorAll('.btn-primary').forEach(button => {
+        const updateBubbleSize = () => {
+            const width = button.offsetWidth;
+            const bubbleSize = width * 3;
+            button.style.setProperty('--bubble-size', `${bubbleSize}px`);
+        };
+
+        button.addEventListener('mouseenter', function (e) {
+            const rect = button.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            button.style.setProperty('--x', `${x}px`);
+            button.style.setProperty('--y', `${y}px`);
+            updateBubbleSize();
+        });
+
+        button.addEventListener('mouseleave', function (e) {
+            const rect = button.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            button.style.setProperty('--x', `${x}px`);
+            button.style.setProperty('--y', `${y}px`);
+            // Reset the transform on mouse leave to ensure the circle contracts
+            setTimeout(() => {
+                button.style.setProperty('--x', `50%`);
+                button.style.setProperty('--y', `50%`);
+            }, 500);  
+        });
+
+        // Initial update
+        updateBubbleSize();
     });
     
 

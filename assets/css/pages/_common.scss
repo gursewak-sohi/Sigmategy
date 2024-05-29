@@ -1,7 +1,7 @@
 // Common SCSS
 
 body {
-    background-color: $neutral-100;
+    background-color: $white;
 }
 
 main {
@@ -21,6 +21,10 @@ main {
 
 .font-medium {
     font-weight: 500;
+}
+
+.font-semibold {
+    font-weight: 600;
 }
 
 .font-bold {
@@ -54,7 +58,7 @@ main {
     background-color: $orange;
 }
 .bg-black {
-    background-color: $black;
+    background-color: $neutral-900;
 }
 
 .reveal-image {
@@ -81,5 +85,27 @@ main {
         width: 100%;
         height: 100%;
         object-fit: cover;
+    }
+}
+
+.text-underline {
+    position: relative;
+    display: inline-flex;
+    & svg {
+        // background-image: url(../assets/images/svg/underline.svg);
+        // width: 164px;
+        // height: 17px;
+        // content: '';
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -10px;
+        // background-size: contain;
+        // background-position: center center;
+        // background-repeat: no-repeat;
+        @include tablet {
+            width: 114px;
+            height: 12px;
+        }
     }
 }
