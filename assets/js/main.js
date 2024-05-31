@@ -182,7 +182,7 @@
   
 
     // gsap animations
-    gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+    gsap.registerPlugin(ScrollTrigger, ScrollSmoother, MotionPathPlugin);
  
 
     // if (!smWidth) {
@@ -213,9 +213,53 @@
 
     
 
-    startGsapAnimation();
+    window.addEventListener('load', startGsapAnimation);
+ 
 
     function startGsapAnimation() {
+
+        // Circular motion animation for #googleIcon
+        gsap.to("#googleIcon", {
+            duration: 30,
+            repeat: -1,
+            ease: "none",
+            autoRotate: true,
+            transformOrigin: "50% 50%",
+            motionPath: {
+                path: "#circularPath",
+                align: "#circularPath",
+                alignOrigin: [0.5, 0.5],
+                start: 1,  
+                end: 0 
+            }
+        });
+
+        gsap.to("#rocketIcon", {
+            duration: 30,
+            repeat: -1,
+            ease: "none",
+            autoRotate: true,
+            transformOrigin: "50% 50%",
+            motionPath: {
+                path: "#circularPath",
+                align: "#circularPath",
+                alignOrigin: [0.5, 0.5],
+                start: 0.7,  
+                end: -0.3 
+            }
+        });
+
+            // Rocket up and down movement on scroll
+            gsap.to("#rocket", {
+                yPercent: -100,
+                scrollTrigger: {
+                    trigger: ".project-section",
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: true,
+                }
+            });
+        
         // Animation Slide up
         const animationUp = document.querySelectorAll('.animate-up');
         if (animationUp) {
@@ -252,6 +296,8 @@
                 once: false
             });
         });
+
+        
 
         // Animation Slide Down
         const animateDown = document.querySelectorAll('.animate-down');
@@ -351,16 +397,16 @@
 
         let banner = document.querySelector(".banner-section");
         if (banner) {
-            gsap.set('.banner-section .image .curve', { opacity: 0 });
+             
             gsap.set('.banner-section .image .person', {transformOrigin: "50% 100%",opacity: 0,  scale: 0.9 });
             gsap.set('.banner-section .image .item-1', { scale: 0.8, opacity: 0 });
             gsap.set('.banner-section .image .item-2', { scale: 0.8, opacity: 0 });
             gsap.set('.banner-section .image .item-3', { scale: 0.8, opacity: 0 });
             gsap.set('.banner-section .image .item-4', { scale: 0.8, opacity: 0 });
-            gsap.set('.banner-section .image .lines', { x: 100, opacity: 0 });
+           
             
             let bannerTL = gsap.timeline();
-            bannerTL.to(".banner-section .image .curve", { opacity: 1,  duration: 1.4, ease: "Expo.easeInOut" }, 0)
+            bannerTL
             .to(".banner-section .image .person", { scale: 1, opacity: 1, duration: 1, ease: "Expo.easeInOut" }, 0.4)
             .to(".banner-section .image .item-1", { scale: 1.2, opacity: 1, duration: 0.7, ease: "Expo.easeInOut" }, 1.3)
             .to(".banner-section .image .item-1", { scale: 1, duration: 0.7, ease: "Expo.easeOut" }, ">")
@@ -369,8 +415,7 @@
             .to(".banner-section .image .item-3", { scale: 1.2, opacity: 1, duration: 0.7, ease: "Expo.easeInOut" }, 1.8)
             .to(".banner-section .image .item-3", { scale: 1, duration: 0.7, ease: "Expo.easeOut" }, ">")
             .to(".banner-section .image .item-4", { scale: 1.2, opacity: 1, duration: 0.7, ease: "Expo.easeInOut" }, 2)
-            .to(".banner-section .image .item-4", { scale: 1, duration: 0.7, ease: "Expo.easeOut" }, ">")
-            .to(".banner-section .image .lines", { x: 0, opacity: 1, duration: 3, ease: "Expo.easeInOut" }, 0.5);
+            .to(".banner-section .image .item-4", { scale: 1, duration: 0.7, ease: "Expo.easeOut" }, ">");
         }
 
 

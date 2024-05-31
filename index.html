@@ -309,11 +309,14 @@
                             </div>
                             <div class="image animate-up">
                                 <img width="773" height="857" class="person" src="assets/images/home/banner-person.webp" alt="person">
-                                <img class="ring" src="assets/images/home/banner-ring.svg" alt="ring">
-                                <img class="item-1" src="assets/images/home/banner-item-1.svg" alt="item">
-                                <img class="item-2" src="assets/images/home/banner-item-2.svg" alt="item">
-                                <img class="item-3" src="assets/images/home/banner-item-3.svg" alt="item">
-                                <img class="item-4" src="assets/images/home/banner-item-4.svg" alt="item">
+                                <svg  class="ring" width="480" height="480" viewBox="0 0 480 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path id="circularPath" d="M0,240a240,240 0 1,0 480,0a240,240 0 1,0 -480,0" stroke="#BC5B43" stroke-opacity="0.15" stroke-width="2" stroke-linecap="round" stroke-dasharray="18 18"/>
+                                </svg>
+                                    
+                                <img class="item-1 moving-item-slow" src="assets/images/home/banner-item-1.svg" alt="item">
+                                <img id="googleIcon" class="item-2" src="assets/images/home/banner-item-2.svg" alt="item">
+                                <img id="rocketIcon" class="item-3" src="assets/images/home/banner-item-3.svg" alt="item">
+                                <img class="item-4 moving-item-slow" src="assets/images/home/banner-item-4.svg" alt="item">
                             </div>
                          </div>
                     </div>
@@ -558,7 +561,7 @@
                 </section>
 
                 <!-- Price Section -->
-                <section class="price-section" style="background-image: url('assets/images/home/price-bg.webp');">
+                <section class="price-section">
                     <div class="container">
                         <div class="block">
                             <div class="heading">
@@ -811,6 +814,10 @@
                             </div>
                         </div>
                     </div>
+                    <div class="bg-item-01 animate-up moving-item"><img src="assets/images/svg/price-item-1.svg" alt="bg"/></div>
+                    <div class="bg-item-02 animate-up moving-item"><img src="assets/images/svg/price-item-2.svg" alt="bg"/></div>
+                    <div class="bg-item-03 animate-up moving-item"><img src="assets/images/svg/price-item-3.svg" alt="bg"/></div>
+                    <div class="bg-item-04 animate-up moving-item"><img src="assets/images/svg/price-item-4.svg" alt="bg"/></div>
                 </section>
 
                 <!-- Study Section -->
@@ -890,7 +897,7 @@
                 </section>
                 
                  <!-- Client's Section -->
-                 <section class="client-section" style="background-image: url('assets/images/home/client-bg.webp');">
+                 <section class="client-section">
                     <div class="container">
                         <div data-swiper="clientSwiper" class="block">
                             <div class="heading">
@@ -948,6 +955,9 @@
                                 </div>
                               </div>
                         </div>
+                    </div>
+                    <div class="bg-item">
+                        <img src="assets/images/home/map-pattern.webp" alt="map"/>
                     </div>
                 </section>
 
@@ -1156,7 +1166,7 @@
                             <div class="button animate-up">
                                 <a class="btn btn-primary btn-md" href="javascript:;"><span>Get In Touch With Us Now!</span></a>
                             </div>
-                            <img class="rocket animate-up" src="assets/images/home/rocket.webp" alt="rocket"/>
+                            <img id="rocket" class="rocket" src="assets/images/home/rocket.webp" alt="rocket"/>
                             <img class="rocket-line animate-up" src="assets/images/home/rocket-line.webp" alt="line"/>
                         </div>
                     </div>
@@ -1273,6 +1283,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollToPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/MotionPathPlugin.min.js"></script>
     <script src="assets/js/vendor/ScrollSmoother.js"></script>
   
     <!-- Main JS -->

@@ -164,6 +164,10 @@
             margin-top: auto;
             margin-bottom: -25px;
             left: -86px;
+            @include tv {
+                transform: scale(0.9);
+                transform-origin: bottom;
+            }
             @include desktop {
                 margin-right: -340px;
                 position: relative;
@@ -188,6 +192,9 @@
                 top: -16px;
                 right: 48px;
                 position: absolute;
+                width: 480px;
+                height: 480px;
+                z-index: -10;
             }
             & .item-1 {
                 top: 671px;
@@ -195,16 +202,19 @@
                 position: absolute;
                 box-shadow: 0 4px 40px rgba(0, 0, 0, 0.15);
                 border-radius: 10px;
+                
             }
             & .item-2 {
                 top: 130px;
                 left: 218px;
                 position: absolute;
+                z-index: -10;
             }
             & .item-3 {
                 top: 78px;
                 right: 50px;
                 position: absolute;
+                z-index: -10;
             }
             & .item-4 {
                 top: 476px;
@@ -667,10 +677,44 @@
     position: relative;
     padding: 60px 0 113px;
     overflow: hidden;
-    background-size: cover;
-    background-position: center;
+    background-color: #F5F5F5;
+    z-index: 0;
     @include tablet {
         padding: 50px 0 80px;
+    }
+    & .bg-item-01 {
+        position: absolute;
+        z-index: -10;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        width: 1391px;
+        height: 721px;
+        margin-top: 77px;
+        margin-left: 48px;
+    }
+    & .bg-item-02 {
+        position: absolute;
+        z-index: -10;
+        top: 130px;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-left: 130px;
+    }
+    & .bg-item-03 {
+        position: absolute;
+        z-index: -10;
+        top: 127px;
+        left: 50%;
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%);
+        margin-left: 153px;
+    }
+    & .bg-item-04 {
+        position: absolute;
+        z-index: -10;
+        bottom: 73px;
+        right: -118px;
     }
     & .block {
         display: flex;
@@ -971,8 +1015,19 @@
 .client-section {
     padding: 60px 0 80px;
     background-size: cover;
+    position: relative;
+    overflow: hidden;
+    background-color: rgba($primary, $alpha: 10%);
     @include tablet {
         padding: 50px 0;
+    }
+    & .bg-item {
+        position: absolute;
+        width: 1688px;
+        height: 829px;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 88px;
     }
     & .swiper-buttons {
         position: absolute;
@@ -1297,9 +1352,10 @@
         & .rocket {
             position: absolute;
             right: 80px;
-            bottom: 5px;
+            bottom: -200px;
             width: 166px;
             z-index: -10;
+            will-change: transform;
             @include laptop {
                 width: 126px;
             }
