@@ -259,6 +259,29 @@
                     scrub: true,
                 }
             });
+
+             // Select all circles in the SVG
+        const circles = document.querySelectorAll('#mapSVG circle');
+
+        if(circles.length > 0)
+        // Apply a GSAP animation to each circle
+        circles.forEach(circle => {
+            gsap.fromTo(circle, 
+                {
+                    scale: 1,
+                    opacity: 1
+                }, 
+                {
+                    scale: 0,
+                    opacity: 0,
+                    duration: 1,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: "power1.inOut",
+                    delay: Math.random() * 2 // Random delay for each circle
+                }
+            );
+        });
         
         // Animation Slide up
         const animationUp = document.querySelectorAll('.animate-up');
