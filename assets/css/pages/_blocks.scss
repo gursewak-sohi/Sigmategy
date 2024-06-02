@@ -164,6 +164,7 @@
             margin-top: auto;
             margin-bottom: -25px;
             left: -86px;
+            will-change: transform;
             @include tv {
                 transform: scale(0.9);
                 transform-origin: bottom;

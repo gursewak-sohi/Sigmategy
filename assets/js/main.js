@@ -11,6 +11,12 @@
         ? smWidth = true
         : smWidth = false;
 
+
+    window.addEventListener('resize', () => {
+        // Reload the current page without using the cache
+        window.location.reload(true);
+    });
+    
     // Viewport Height
     let vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty("--vh", `${vh}px`);
@@ -93,9 +99,6 @@
  
 
  
-
-    
-
     // Clients  Swiper
     const clientSwiper = document.querySelectorAll('[data-swiper="clientSwiper"]');
     clientSwiper.forEach((swiperElement) => {
@@ -185,12 +188,12 @@
     gsap.registerPlugin(ScrollTrigger, ScrollSmoother, MotionPathPlugin);
  
 
-    // if (!smWidth) {
-    //     ScrollSmoother.create({
-    //         smooth: 0.5, 
-    //         effects: false, 
-    //     });
-    // }
+    if (!smWidth) {
+        ScrollSmoother.create({
+            smooth: 0.5, 
+            effects: false, 
+        });
+    }
 
      
         
