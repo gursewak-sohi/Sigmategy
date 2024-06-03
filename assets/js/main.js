@@ -12,11 +12,17 @@
         : smWidth = false;
 
 
+    // Reload page on screen width changes
+    let lastWidth = window.innerWidth;
+
     window.addEventListener('resize', () => {
-        // Reload the current page without using the cache
-        window.location.reload(true);
+        if (window.innerWidth !== lastWidth) {
+            lastWidth = window.innerWidth;
+            window.location.reload(true);
+        }
     });
-    
+
+
     // Viewport Height
     let vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty("--vh", `${vh}px`);
