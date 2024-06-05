@@ -173,7 +173,7 @@
                 margin-right: -340px;
                 position: relative;
                 left: -20%;
-                transform: scale(0.9);
+                transform: scale(0.80);
                 transform-origin: bottom;
             }
             @include laptop {
@@ -181,6 +181,7 @@
                 margin-left: 0;
                 margin-top: -100px;
                 left: 50%;
+                display: none;
                 transform: translateX(-50%) scale(0.8);
                 transform-origin: bottom;
             }
@@ -267,6 +268,9 @@
             flex-direction: column;
             flex-shrink: 0;
             max-width: 571px;
+            @include desktop {
+                max-width: 471px;
+            }
             @include laptop {
                 max-width: 100%;
             }

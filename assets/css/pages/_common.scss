@@ -109,3 +109,7 @@ main {
         }
     }
 }
+
+.moving-item {
+    will-change: transform;
+}
