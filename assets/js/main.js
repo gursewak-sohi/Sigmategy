@@ -7,9 +7,7 @@
         .add('js-loaded');
 
     let smWidth;
-    screen.width < 992
-        ? smWidth = true
-        : smWidth = false;
+    screen.width < 1024 ? smWidth = true: smWidth = false;
 
 
     // Reload page on screen width changes
@@ -294,7 +292,7 @@
         
         // Animation Slide up
         const animationUp = document.querySelectorAll('.animate-up');
-        if (animationUp) {
+        if (animationUp && !smWidth) {
             ScrollTrigger.batch(".animate-up", {
                 onEnter: elements => {
                     gsap.to(elements, {
