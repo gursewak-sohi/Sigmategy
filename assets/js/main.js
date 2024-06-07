@@ -11,14 +11,14 @@
 
 
     // Reload page on screen width changes
-    let lastWidth = window.innerWidth;
+    // let lastWidth = window.innerWidth;
 
-    window.addEventListener('resize', () => {
-        if (window.innerWidth !== lastWidth) {
-            lastWidth = window.innerWidth;
-            window.location.reload(true);
-        }
-    });
+    // window.addEventListener('resize', () => {
+    //     if (window.innerWidth !== lastWidth) {
+    //         lastWidth = window.innerWidth;
+    //         window.location.reload(true);
+    //     }
+    // });
 
 
     // Viewport Height
