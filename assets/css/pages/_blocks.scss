@@ -172,8 +172,8 @@
             @include desktop {
                 margin-right: -340px;
                 position: relative;
-                left: -20%;
-                transform: scale(0.80);
+                left: -18%;
+                transform: scale(0.75);
                 transform-origin: bottom;
             }
             @include laptop {
@@ -352,7 +352,8 @@
                 position: relative;
                 overflow: hidden;
                 @include desktop {
-                    margin-left: -220px;
+                    margin-left: -170px;
+                    width: 722px;
                 }
                 @include laptop {
                     margin-left: 0;
@@ -1227,6 +1228,7 @@
         transform: scale(1.4);
         @include desktop {
             transform: scale(1);
+            margin-right: -130px;
         }
         @include tablet {
             display: none;

@@ -16,6 +16,10 @@
             display: grid;
             grid-template-columns: 256px 1fr 275px;
             gap: 90px;
+            @include desktop {
+                grid-template-columns: 196px 1fr 255px;
+                gap: 50px;
+            }
             @include laptop {
                 grid-template-columns: 216px 1fr 245px;
                 gap: 30px;
