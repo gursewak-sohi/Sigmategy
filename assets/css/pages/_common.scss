@@ -110,6 +110,6 @@ main {
     }
 }
 
-.moving-item {
+.moving-item , .moving-item-slow, .animate-zoom  {
     will-change: transform;
 }
