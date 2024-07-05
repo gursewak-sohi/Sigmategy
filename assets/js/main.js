@@ -350,23 +350,28 @@
         if (animateZoom.length) {
             ScrollTrigger.batch(".animate-zoom", {
                 onEnter: elements => {
-                    gsap.fromTo(elements, 
-                        {
-                            scale: 1.2,  
-                        }, 
-                        {
-                            scale: 1, 
-                            stagger: 0.12,  
-                            duration: 0.7,  
-                            ease: "Expo.easeOut", 
-                            delay: 0.8 
-                        }
-                    );
+                    elements.forEach((element, index) => {
+                        const tl = gsap.timeline({
+                            defaults: { duration: 0.35, ease: "Expo.easeOut" },
+                            delay: index * 0.12 // Adding stagger delay based on index
+                        });
+
+                        tl.fromTo(element, 
+                            { scale: 1 }, 
+                            { scale: 1.13 })
+                        .to(element, 
+                            { scale: 1 });
+
+                        ScrollTrigger.create({
+                            trigger: element,
+                            animation: tl,
+                            once: false
+                        });
+                    });
                 },
                 once: false 
             });
         }
-
 
          // Animation Slide Right
          const animateRight = document.querySelectorAll('.animate-right');

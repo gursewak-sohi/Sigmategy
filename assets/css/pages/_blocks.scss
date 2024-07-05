@@ -363,6 +363,12 @@
                 @include tablet {
                     padding: 20px;
                 }
+                & br {
+                    display: none;
+                    @include mobile {
+                        display: block;
+                    }
+                }
                 & .item-circle {
                     position: absolute;
                     right: -96px;
@@ -425,8 +431,8 @@
         @include tablet {
             width: 150px;
             height: 150px;
-            left: -85px;
-            top: -85px;
+            left: -100px;
+            top: -100px;
         }
     }
     & .item-2 {
@@ -492,6 +498,7 @@
                     align-items: center;
                     max-width: 340px;
                     margin-top: 40px;
+                    margin-bottom: 30px;
                     @include tablet {
                         gap: 10px;
                         max-width: 310px;
@@ -518,11 +525,9 @@
                     width: 100%;
                     align-items: center;
                     justify-content: flex-end;
-                    margin-top: 30px;
+                    margin-top: auto;
                     position: relative;
                     z-index: 0;
-                    
-
                     & a {
                         margin-right: 30px;
                         color: $secondary;
@@ -1180,7 +1185,7 @@
                 justify-content: center;
             }
             @include tablet {
-                gap: 10px;
+                gap: 20px;
             }
             & li {
                 height: 102px;
@@ -1370,7 +1375,7 @@
             }
             @include tablet {
                 width: 80px;
-                right: -40px;
+                right: -20px;
             }
         }
         & .rocket-line {
